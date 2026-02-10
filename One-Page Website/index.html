@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My One‑Page Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        nav { background: #333; padding: 10px; position: sticky; top: 0; z-index: 100; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; }
+        section { padding: 40px; }
+        footer { background: #222; color: white; text-align: center; padding: 20px; }
+        
+        /* Gallery Styles */
+        .gallery-container img { 
+            width: 250px; 
+            margin: 10px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: transform 0.3s ease;
+        }
+        .gallery-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        form input, form textarea { display: block; margin: 10px 0; width: 300px; padding: 8px; }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#gallery">Pictures</a>
+        <a href="#videos">Videos</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home">
+        <h1>Welcome to My One‑Page Website</h1>
+        <p>This is a simple but unique HTML project showcasing navigation, images, videos, and a contact form — all on one page.</p>
+    </section>
+
+    <section id="gallery">
+        <h2>Picture Gallery</h2>
+        <div class="gallery-container">
+            <img src="https://cdn.pixabay.com/photo/2025/12/17/14/00/fishing-10020362_1280.jpg" alt="Sample Image 1">
+            <img src="https://cdn.pixabay.com/photo/2025/12/17/14/00/fishing-10020362_1280.jpg" alt="Sample Image 2">
+            <img src="https://cdn.pixabay.com/photo/2025/12/17/14/00/fishing-10020362_1280.jpg" alt="Sample Image 3">
+        </div>
+    </section>
+
+    <section id="videos">
+        <h2>Featured Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ehcVomMexkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form>
+            <label>Name:</label>
+            <input type="text" placeholder="Your name">
+            <label>Email:</label>
+            <input type="email" placeholder="Your email">
+            <label>Message:</label>
+            <textarea rows="5" placeholder="Your message"></textarea>
+            <input type="submit" value="Send">
+        </form>
+    </section>
+
+    <div id="lightbox" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <footer>
+        <p>© 2026 My One‑Page Website — All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.querySelector('.close-btn');
+        const images = document.querySelectorAll('.gallery-container img');
+
+        // Open lightbox on image click
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                modalImg.src = img.src;
+            });
+        });
+
+        // Close lightbox on 'X' click
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
